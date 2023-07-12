@@ -84,15 +84,13 @@ Pada tahap Data Understanding dilakukan analisis data eksploratif untuk mendapat
 
 - Melakukan visualisasi data untuk mengetahui korelasi dan sebaran data. Visualisasi korelasi antar kolom digambarkan dalam heatmap seperti ditunjukan Gambar 1. Berdasarkan diagaram heatmap Gambar 1 diketahui bahawa terdapat beberapa kolom seperti age, bmi, childern, dll yang berkorelasi dengan kolom 'charges'.  Semakin mendekati nilai 1 maka korelasi semakin tinggi. Kemudian hasil visualisasi heatmap hanya menampilkan korelasi pada kolom yang memberikan data numerikal, sedangkan kolom yang memberikan hasil kategorikal tidak dapat diketahui korelasinya.
 
-
-
-![png](output_17_0.png)
+![output_20_0](https://github.com/DwiKrisnandi1905/UAS_Praktikum_KecerdasanBuatan/assets/116879948/d5ba18ad-29f1-47e5-8a31-8c4bc5b0ffd5)
 
 <div style="text-align:center">Gambar 1. Visualisasi Korelasi Data dengan Heatmap</div>
 
 Sedangkan contoh visualisasi dari sebaran data ditunjukan pada Gambar 2. Visualisasi yang ditunjukan pada Gambar 2 menunjukan bahwa ada ketidakseimbangan data pada kolom female male, children, smoker, dan region.
 
-![png](output_21_0.png)
+![output_24_0](https://github.com/DwiKrisnandi1905/UAS_Praktikum_KecerdasanBuatan/assets/116879948/83bbf1bc-f693-4e31-8323-1946c72efe40)
 
 <div style="text-align:center">Gambar 2. Visualisasi Data pada Dataset</div>
 
