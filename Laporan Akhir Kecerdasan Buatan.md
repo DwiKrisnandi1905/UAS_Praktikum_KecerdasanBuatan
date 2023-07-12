@@ -436,67 +436,42 @@ Pada tahap ini dilakukan proses pelatihan untuk mendapatkan model dengan perform
 
    Algoritma dengan performa terbaik dilihat dari nilai R-Square dan RMSE. Semakin besar nilai R-Square (mendekati 1) maka model semakin akurat. Sedangkan pada RMSE, apabila nilai semain kecil (mendekati 0), maka akurasi model akan semakin tinggi. Berdasarkan hasil R-Square dan RMSE menggunakan Lazy Predict pada Tabel 1, disimpulkan bahwa 3 algoritma terbaik yang akan digunakan untuk mempredikasi harga adalah **GradientBoostingRegressor**, **RandomForestRegressor**, dan **BaggingRegressor**.
 
-3. Membuat pipeline untuk menggabungkan data numerik dan kategorik
+2. Membuat pipeline untuk menggabungkan data numerik dan kategorik
 
    Hasil penggunakan teknik `ColumnTransformer` disimpan dalam objek feature. Selanjutnya dilakukan proses pipeline untuk menggabungkan dan meng-optimasi kolom numerikal dan kategorikan agar dapat di proses oleh algoritma machine learning. 
 
-4. Memilih 3 (tiga) algoritma dengan performa terbaik untuk di evaluasi
+3. Menggunakan 6 algoritma untuk di evaluasi
 
-   Setelah dilakukan proses pelatihan oleh Lazy Predict, diperoleh 3 algoritma dengan performa terbaik yaitu :
 
-   - **GradientBoostingRegressor**
+   - *LinearRegression*
 
-     GradientBoostingRegressor adalah algoritma pemodelan yang digunakan dalam pembelajaran mesin untuk memprediksi variabel target berkelanjutan. Ini adalah metode ensambel yang menggabungkan beberapa pohon keputusan untuk membuat model yang lebih kuat. Algoritma GradientBoostingRegressor bekerja dengan menggabungkan banyak pohon keputusan sederhana. Setiap pohon yang ditambahkan ke model berusaha untuk memperbaiki kesalahan prediksi yang dihasilkan oleh pohon sebelumnya. Algoritma ini bekerja dengan cara mengoptimalkan gradien fungsi kerugian (misalnya, *Mean Squared Error*) menggunakan proses iteratif. Ilustrasi dari cara kerja GradienBoostingRegressor ditunjukan pada Gambar 2.
+     Linear Regression adalah metode pemodelan statistik yang digunakan untuk mempelajari hubungan linier antara variabel independen (fitur) dan variabel dependen (target). Tujuan utama Linear Regression adalah untuk menggambarkan hubungan linier antara variabel independen dan variabel dependen, serta memprediksi nilai target berdasarkan nilai fitur yang diberikan
 
-     ![](https://afandistudio.net/prak_ai/GradienRegression.png)
+   - *XGBRegressor*
 
-     <div style="text-align:center">Gambar 2. Ilustrasi GradienBoostingRegressor [5]</div>
-
-   - **RandomForestRegressor**
-
-     RandomForestRegressor adalah algoritma pemodelan yang digunakan dalam pembelajaran mesin untuk memprediksi variabel target berkelanjutan. Ini adalah metode ensambel yang menggabungkan beberapa pohon keputusan acak (*random decision trees*) untuk membuat model yang lebih kuat. Pada dasarnya, algoritma RandomForestRegressor bekerja dengan menggabungkan hasil dari banyak pohon keputusan acak yang diberi bobot yang sama. Setiap pohon keputusan acak dibangun dengan menggunakan subset acak dari data pelatihan dan subset acak dari fitur (variabel independen). Proses ini dikenal sebagai bootstrap aggregating atau biasa disebut juga sebagai "bagging". Ilustrasi dari cara kerja RandomForestRegressor ditunjukan pada Gambar 3.
-
-     <img src="https://afandistudio.net/prak_ai/RFRegression.jpg" style="zoom: 25%;" />
-
-     <div style="text-align:center">Gambar 3. Ilustrasi RandomForestRegressor [6]</div>
-
-   - **BaggingRegressor**
-
-     BaggingRegressor adalah algoritma pemodelan yang digunakan dalam pembelajaran mesin untuk memprediksi variabel target berkelanjutan. Ini adalah metode ensambel yang menggabungkan beberapa model regresi (misalnya, Regresi Linier, DecisionTreeRegressor) untuk membuat model yang lebih kuat. Pada dasarnya, algoritma BaggingRegressor bekerja dengan membuat beberapa model regresi yang berbeda menggunakan subset acak dari data pelatihan. Setiap model regresi dibangun secara independen dan tidak saling bergantung satu sama lain. Ketika melakukan prediksi, hasil dari semua model regresi digabungkan untuk menghasilkan prediksi akhir dengan menggunakan rata-rata atau mayoritas suara (tergantung pada jenis variabel target). Ilustrasi dari cara kerja BaggingRegressor ditunjukan pada Gambar 4.
-
-     <img src="https://afandistudio.net/prak_ai/BaggingRegressor.png" style="zoom:50%;" />
-
-     <div style="text-align:center">Gambar 4. Ilustrasi BaggingRegressor [7]</div>
-
-     Namun, BaggingRegressor tidak memberikan interpretasi model yang langsung seperti Regresi Linier. Selain itu, dalam beberapa kasus, jika terdapat korelasi yang kuat antara fitur, BaggingRegressor mungkin tidak memberikan peningkatan yang signifikan dalam kinerja prediksi dibandingkan dengan model regresi tunggal.
-
-5. Menambahkan parameter tunning untuk mengingkatkan performa model
-
-   Penambahan parameter menggunakan **Teknik Grid Search**. Sehingga diperoleh hyperparameter dari masing-masing algoritma adalah sebagai berikut.
-
-   - Parameter GradienBoostingRegressor
-   
-     - n_estimator = 90
-     - max_depth = 5
-     - min_samples_split = 10
-     - min_samples_leaf = 4
-     - max_features = 4
+     Algoritma XGBRegressor bekerja dengan melakukan kombinasi dari banyak pohon keputusan sederhana yang disebut "weak learners". Setiap pohon keputusan yang ditambahkan ke model berusaha untuk memperbaiki kesalahan prediksi yang dihasilkan oleh pohon sebelumnya. Proses ini dilakukan secara iteratif hingga mencapai jumlah pohon yang telah ditentukan atau ketika tidak ada peningkatan yang signifikan dalam performa model.
      
-   - Parameter RandomForestRegressor
-   
-     - n_estimator = 90
-   - max_samples = 0.4
-     - max_features = 0.5
-   
-   - Parameter BaggingRegressor
+   - *RandomForestRegressor*
 
-     - n_estimators = 70
-     - max_features = 0.7
-     - max_samples = 0.6
-  - warm_start= False
-     - oob_score = False
-  - bootstrap = False
-    
+     RandomForestRegressor adalah sebuah algoritma pembelajaran mesin yang digunakan untuk melakukan regresi atau prediksi nilai numerik berdasarkan fitur-fitur yang diberikan. Algoritma ini merupakan bagian dari keluarga algoritma Random Forest yang dikembangkan berdasarkan konsep ensemble learning.
+RandomForestRegressor bekerja dengan menggabungkan prediksi dari beberapa pohon keputusan yang terbentuk secara acak. Setiap pohon keputusan dalam Random Forest diproses dengan menggunakan subset acak dari data pelatihan dan subset acak dari fitur-fitur yang tersedia. Setiap pohon menghasilkan prediksi individual, dan prediksi akhir dari RandomForestRegressor diperoleh dengan mengambil rata-rata prediksi dari semua pohon tersebut.
+
+ - *AdaBoostRegressor*
+
+     AdaBoostRegressor adalah sebuah algoritma pembelajaran mesin yang digunakan untuk melakukan regresi atau prediksi nilai numerik. Algoritma ini merupakan bagian dari keluarga algoritma Boosting yang dikembangkan berdasarkan konsep ensemble learning.
+AdaBoostRegressor bekerja dengan menggabungkan prediksi dari beberapa model regresi yang lebih sederhana, yang disebut "weak learners". Setiap weak learner (misalnya Decision Tree) diberikan bobot yang menggambarkan sejauh mana mereka berkontribusi terhadap prediksi akhir. Pada awalnya, bobot setiap sampel dalam dataset pelatihan adalah seragam. Kemudian, dalam setiap iterasi, model regresi baru dibangun dengan memberikan bobot yang diperbarui pada sampel-sampel yang dijadikan kesalahan oleh model sebelumnya. Proses ini berlanjut hingga prediksi akhir dihasilkan dengan menggabungkan prediksi dari semua model regresi.
+
+ - *Lasso*
+
+     Lasso (Least Absolute Shrinkage and Selection Operator) adalah sebuah metode regularisasi yang digunakan dalam regresi untuk mengurangi variabel yang tidak signifikan dan melakukan seleksi fitur. Tujuan utama Lasso adalah memperbaiki masalah multikolinearitas dalam regresi, di mana beberapa fitur dalam model regresi memiliki korelasi yang tinggi.
+Lasso bekerja dengan menambahkan istilah penalti ke dalam fungsi tujuan regresi yang menggunakan norma L1 (norma Manhattan) dari koefisien regresi. Dengan menambahkan istilah penalti ini, Lasso memperkenalkan sparsity ke dalam model, yang berarti beberapa koefisien regresi akan dikurangi menjadi nol, sehingga fitur-fitur yang kurang penting akan dieliminasi.
+
+ - *Ridge*
+
+     Ridge adalah sebuah metode regularisasi yang digunakan dalam regresi untuk mengurangi varians yang tinggi atau overfitting dalam model regresi. Tujuan utama Ridge adalah memperbaiki masalah multikolinearitas dalam regresi, di mana beberapa fitur dalam model regresi memiliki korelasi yang tinggi.
+Ridge bekerja dengan menambahkan istilah penalti ke dalam fungsi tujuan regresi yang menggunakan norma L2 (norma Euclidean) dari koefisien regresi. Dengan menambahkan istilah penalti ini, Ridge mendorong koefisien regresi untuk mendekati nol, tetapi tidak secara tegas mengeliminasi variabel seperti yang dilakukan oleh metode Lasso.
+
+4. menghitung dan mencetak kesalahan prediksi menggunakan metrik MAPE
 
 
 ## Evaluation
